@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+<title>{% trans 'Джанго сайт для теста деплоя. Тест работы переводов' %}</title>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div id="toast-messages" class="toast toast-top toast-end">
+</div>
+<div class="flex flex-col m-[5px] justify-center max-w-[900px] h-full">
+    <h1 class="text-center">{% trans 'Тестирование переводов' %}</h1>
+    <p class="text-justify">
+        {% blocktrans %}
+        Здесь будет представлен некоторый текст, который должен быть доступен на различных языках. 
+        Так же под перевод должны попасть любые строчки написанные на сервере или в JS коде.
+        {% endblocktrans %}
+    </p>
+    <p>
+        {% trans "Это строчки с сервера" %}
+        <button class="rounded-selector btn btn-block btn-dash btn-info" hx-get="get-server-strings/" hx-target="#toast-messages">{% trans "Получить строки с сервера" %}</button>
+    </p>
+    <p>
+        {% trans "Это строчки из JS кода" %}
+        <button id="get_str_form_js" class="rounded-selector btn btn-block btn-dash btn-info">{% trans "Получить строки JS скриптов" %}</button>
+    </p>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+<title>{% trans 'Джанго сайт для теста деплоя' %}</title>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-col m-[5px] justify-center max-w-[900px] h-full">
+    <h1 class="text-center">{% trans 'Сайт для теста процесса деплоя на серверах' %}</h1>
+    <p class="text-justify">
+        {% blocktrans %}
+        Данный сайт был разработан лишь с одной целью. С целью проверки возможности деплоя на различных серверах и прочих. Плюс возможность потренироваться в этом деле перед тем как заливать свой собственный сайт.
+        {% endblocktrans %}
+    </p>
+    <p>
+        {% blocktrans %}
+        Поддерживаеммые тесты на данный момент:
+        {% endblocktrans %}
+    </p>
+    <ol>
+        <li><a href="{% url 'test-mail' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа с почтой. (Отправление писем на указанный почтовый адресс)' %}</li>
+        <li><a href="{% url 'test-database' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа с базой данных. (Добавление, Изменение, Удаление из БД. Плюс сортировка записей в БД)' %}</li>
+        <li><a href="{% url 'test-media' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа с медиа файлами. (Загрузка их на сервер и возможность их получить)' %}</li>
+        <li><a href="{% url 'test-static' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа со статическими файлами. (Их доступность)' %}</li>
+        <li><a href="{% url 'test-testing' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа тестов на сервере, их покрытие проектом' %}</li>
+        <li><a href="{% url 'test-translation' %}"><img class="w-[16px]" src="{% static 'images/link.svg' %}"></a> {% trans 'Работа с переводами. (Переводы шаблонов(<b>HTML</b>), переводы в скриптах(<b>JS</b>), переводы на сервере(<b>Python</b>))' %}</li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

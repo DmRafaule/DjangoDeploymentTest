@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+<title>{% trans 'Джанго сайт для теста деплоя. Тест работы медиа файлов' %}</title>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+{% get_current_language as LC %}
+<div class="flex flex-col m-[5px] justify-center max-w-[900px] h-full">
+    <h1 class="text-center">{% trans 'Тестирование работы медиа файлов' %}</h1>
+    <p class="text-justify">
+        {% blocktrans %}
+        На этой странице ты сможешь загрузить на сервер новый файл (проверка медиа), после чего скачать его обратно
+        {% endblocktrans %}
+    </p>
+    <button class="btn btn-block" hx-get="/{{LC}}/api/medias/?page=1&limit=15" hx-target="#media-container" hx-trigger="click">{% trans "Получить доступные файлы" %}</button>
+    <hr class="w-full">
+    <div id="media-container"></div>
+    <hr class="w-full">
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+

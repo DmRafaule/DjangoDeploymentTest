@@ -1,0 +1,333 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-30 22:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Frontend\templates\Backend\Parts\media.html:9
+#: .\Frontend\templates\Backend\Parts\post.html:8
+#: .\Frontend\templates\Backend\Parts\tag.html:8
+msgid "Форма редактирования объекта"
+msgstr "A form to edit object"
+
+#: .\Frontend\templates\Backend\Parts\media.html:22
+#: .\Frontend\templates\Backend\Parts\post.html:21
+#: .\Frontend\templates\Backend\Parts\tag.html:21
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\Frontend\templates\Backend\Parts\media.html:23
+#: .\Frontend\templates\Backend\Parts\post.html:22
+#: .\Frontend\templates\Backend\Parts\tag.html:22
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\Frontend\templates\Backend\Parts\media.html:33
+#: .\Frontend\templates\Backend\Parts\post.html:31
+#: .\Frontend\templates\Backend\Parts\tag.html:31
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\Frontend\templates\Backend\Parts\media.html:34
+#: .\Frontend\templates\Backend\Parts\post.html:32
+#: .\Frontend\templates\Backend\Parts\tag.html:32
+msgid "Изменить"
+msgstr "Edit"
+
+#: .\Frontend\templates\Backend\Parts\media.html:35
+msgid "Скачать"
+msgstr "Download"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:8
+msgid "Форма создания нового объекта"
+msgstr "A form to create new object"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:23
+msgid "Создать"
+msgstr "Create"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:31
+msgid "Предыдущая"
+msgstr "Previouse"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:34
+msgid "Следующая"
+msgstr "Next"
+
+#: .\Frontend\templates\Backend\Parts\post.html:36
+msgid "Опубликованно"
+msgstr "Published"
+
+#: .\Frontend\templates\Backend\Parts\post.html:40
+msgid "Обновленно"
+msgstr "Updated"
+
+#: .\Frontend\templates\Backend\Parts\send_email.html:16
+msgid "Форма отправки почты"
+msgstr "Email sending form"
+
+#: .\Frontend\templates\Backend\Parts\send_email.html:31
+msgid "Отправить"
+msgstr "Send"
+
+#: .\Frontend\templates\base.html:22 .\Frontend\templates\domashnyaya.html:6
+msgid "Джанго сайт для теста деплоя"
+msgstr "Django site to test deployment process"
+
+#: .\Frontend\templates\base.html:61
+msgid "Все права защищены"
+msgstr "All rights reserved"
+
+#: .\Frontend\templates\base.html:62
+msgid ""
+"\n"
+"\t\t\t<p>Сделано <b>Тимом Вебмастером</b>, для <b>Тимы Вебмастера</b></p> \n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>Made by <b>Tim Webmaster</b>, for <b>Tim Webmaster</b></p> \n"
+"\t\t\t"
+
+#: .\Frontend\templates\domashnyaya.html:14
+msgid "Сайт для теста процесса деплоя на серверах"
+msgstr "Site for testing the deployment process on servers"
+
+#: .\Frontend\templates\domashnyaya.html:16
+msgid ""
+"\n"
+"        Данный сайт был разработан лишь с одной целью. С целью проверки "
+"возможности деплоя на различных серверах и прочих. Плюс возможность "
+"потренироваться в этом деле перед тем как заливать свой собственный сайт.\n"
+"        "
+msgstr ""
+"\n"
+" This site was developed for one purpose only. To test the possibility of "
+"deployment on various servers and others. Plus the opportunity to practice "
+"in this matter before uploading your own site.\n"
+" "
+
+#: .\Frontend\templates\domashnyaya.html:21
+msgid ""
+"\n"
+"        Поддерживаеммые тесты на данный момент:\n"
+"        "
+msgstr ""
+"\n"
+" Current supported tests:\n"
+" "
+
+#: .\Frontend\templates\domashnyaya.html:26
+msgid "Работа с почтой. (Отправление писем на указанный почтовый адресс)"
+msgstr "Working with mail. (Sending letters to the specified postal address)"
+
+#: .\Frontend\templates\domashnyaya.html:27
+msgid ""
+"Работа с базой данных. (Добавление, Изменение, Удаление из БД. Плюс "
+"сортировка записей в БД)"
+msgstr ""
+"Working with the database. (Adding, Changing, Deleting from the DB. Plus "
+"sorting records in the DB)"
+
+#: .\Frontend\templates\domashnyaya.html:28
+msgid ""
+"Работа с медиа файлами. (Загрузка их на сервер и возможность их получить)"
+msgstr ""
+"Working with media files. (Uploading them to the server and the ability to "
+"receive them)"
+
+#: .\Frontend\templates\domashnyaya.html:29
+msgid "Работа со статическими файлами. (Их доступность)"
+msgstr "Working with static files. (Their availability)"
+
+#: .\Frontend\templates\domashnyaya.html:30
+msgid "Работа тестов на сервере, их покрытие проектом"
+msgstr "Tests running on the server, their coverage by the project"
+
+#: .\Frontend\templates\domashnyaya.html:31
+msgid ""
+"Работа с переводами. (Переводы шаблонов(<b>HTML</b>), переводы в "
+"скриптах(<b>JS</b>), переводы на сервере(<b>Python</b>))"
+msgstr ""
+"Working with translations. (Template translations (<b>HTML</b>), "
+"translations in scripts (<b>JS</b>), translations on the server (<b>Python</"
+"b>))"
+
+#: .\Frontend\templates\test-database.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы базы данных"
+msgstr "Django site for testing a deployment process. Test database"
+
+#: .\Frontend\templates\test-database.html:14
+msgid "Тестирование работы с базой данных"
+msgstr "Testing work with the database"
+
+#: .\Frontend\templates\test-database.html:16
+msgid ""
+"\n"
+"        Данная страница предоставляет возможность проверить перенесена ли "
+"база данных корректно. Плюс, возможны ли такие\n"
+"        базовые операции с БД как добавление, удаление изменение и "
+"пагинирование. Для тестирования были созданны две модели\n"
+"        Tag и Post\n"
+"        "
+msgstr ""
+"\n"
+" This page provides the ability to check whether the database has been "
+"transferred correctly. Plus, whether such basic operations with the database "
+"as adding, deleting, changing and pagination are possible. Two models were "
+"created for testing:\n"
+" Tag and Post\n"
+" "
+
+#: .\Frontend\templates\test-mail.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы с почтой"
+msgstr "Django site for deployment test. Test of work with mail"
+
+#: .\Frontend\templates\test-mail.html:14
+msgid "Тестирование работы с почтой"
+msgstr "Testing work with mail"
+
+#: .\Frontend\templates\test-mail.html:16
+msgid ""
+"\n"
+"        На этой странице ты можешь написать и отправить письмо на любой "
+"почтовый адрес. С тем условием, что настройка почты \n"
+"        на сервере была завершена успешна.\n"
+"        "
+msgstr ""
+"\n"
+" On this page you can write and send a letter to any mail address. Provided "
+"that the mail setup \n"
+" on the server was completed successfully.\n"
+" "
+
+#: .\Frontend\templates\test-media.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы медиа файлов"
+msgstr "Django site for deployment testing. Media files work test"
+
+#: .\Frontend\templates\test-media.html:14
+msgid "Тестирование работы медиа файлов"
+msgstr "Testing the operation of media files"
+
+#: .\Frontend\templates\test-media.html:16
+msgid ""
+"\n"
+"        На этой странице ты сможешь загрузить на сервер новый файл (проверка "
+"медиа), после чего скачать его обратно\n"
+"        "
+msgstr ""
+"\n"
+" On this page you can upload a new file to the server (check media), and "
+"then download it back\n"
+" "
+
+#: .\Frontend\templates\test-media.html:20
+msgid "Получить доступные файлы"
+msgstr "Get available files"
+
+#: .\Frontend\templates\test-static.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы статических файлов"
+msgstr "Django site for deployment test. Test of static files operation"
+
+#: .\Frontend\templates\test-static.html:14
+msgid "Тестирование работы статических файлов"
+msgstr "Testing the operation of static files"
+
+#: .\Frontend\templates\test-static.html:16
+msgid ""
+"\n"
+"        Эта страница должа будет загрузить некоторые статические файлы "
+"(изображения), с сервера. Если ты их получил\n"
+"        значит настройки сервера с работой со статикой успешны.\n"
+"        "
+msgstr ""
+"\n"
+" This page will need to download some static files (images) from the server. "
+"If you got them\n"
+" then the server settings with statics are successful.\n"
+" "
+
+#: .\Frontend\templates\test-testing.html:6
+msgid ""
+"Джанго сайт для теста деплоя. Тест работы тестирования сервера в эксплуатации"
+msgstr "Django site for deployment test. Test of server testing in operation"
+
+#: .\Frontend\templates\test-testing.html:14
+msgid "Тестирование работы тестирования на производственном сервере"
+msgstr "Testing the testing work on the production server"
+
+#: .\Frontend\templates\test-testing.html:16
+msgid ""
+"\n"
+"        "
+msgstr ""
+"\n"
+" "
+
+#: .\Frontend\templates\test-translation.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы переводов"
+msgstr "Django site for deployment test. Translation work test"
+
+#: .\Frontend\templates\test-translation.html:16
+msgid "Тестирование переводов"
+msgstr "Translation testing"
+
+#: .\Frontend\templates\test-translation.html:18
+msgid ""
+"\n"
+"        Здесь будет представлен некоторый текст, который должен быть "
+"доступен на различных языках. \n"
+"        Так же под перевод должны попасть любые строчки написанные на "
+"сервере или в JS коде.\n"
+"        "
+msgstr ""
+"\n"
+" Some text will be presented here, which should be available in different "
+"languages. \n"
+" Also, any lines written on the server or in JS code should be translated.\n"
+" "
+
+#: .\Frontend\templates\test-translation.html:24
+msgid "Это строчки с сервера"
+msgstr "These are strings from server"
+
+#: .\Frontend\templates\test-translation.html:25
+msgid "Получить строки с сервера"
+msgstr "Get strings from server"
+
+#: .\Frontend\templates\test-translation.html:28
+msgid "Это строчки из JS кода"
+msgstr "These are strings from JS code"
+
+#: .\Frontend\templates\test-translation.html:29
+msgid "Получить строки JS скриптов"
+msgstr "Get JS script strings"
+
+#: .\Frontend\views.py:42
+msgid "Это сообщение было отправленно с тестового сайта по деплою"
+msgstr "This message was sent from the deployment test site."
+
+#: .\Frontend\views.py:50 .\Frontend\views.py:117
+msgid "Успешно отправил письмо"
+msgstr "Successfully sent an e-mail"
+
+#: .\Frontend\views.py:55
+msgid "Не смог отправить письмо"
+msgstr "Failed to send an e-mail"
+
+#: .\Frontend\views.py:123
+msgid "Это сообщение с сервера"
+msgstr "This message are from the server"

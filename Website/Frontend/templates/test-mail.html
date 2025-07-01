@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+<title>{% trans 'Джанго сайт для теста деплоя. Тест работы с почтой' %}</title>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-col m-[5px] justify-center max-w-[900px] h-full">
+    <h1 class="text-center">{% trans 'Тестирование работы с почтой' %}</h1>
+    <p class="text-justify">
+        {% blocktrans %}
+        На этой странице ты можешь написать и отправить письмо на любой почтовый адрес. С тем условием, что настройка почты 
+        на сервере была завершена успешна.
+        {% endblocktrans %}
+    </p>
+    <hr class="w-full">
+    {% include 'Backend/Parts/send_email.html' with send_email_form=send_email_form %}
+    <hr class="w-full">
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+

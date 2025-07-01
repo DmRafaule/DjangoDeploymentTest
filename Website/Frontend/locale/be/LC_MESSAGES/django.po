@@ -1,0 +1,335 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-30 22:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\Frontend\templates\Backend\Parts\media.html:9
+#: .\Frontend\templates\Backend\Parts\post.html:8
+#: .\Frontend\templates\Backend\Parts\tag.html:8
+msgid "Форма редактирования объекта"
+msgstr "Форма рэдагавання аб'екта"
+
+#: .\Frontend\templates\Backend\Parts\media.html:22
+#: .\Frontend\templates\Backend\Parts\post.html:21
+#: .\Frontend\templates\Backend\Parts\tag.html:21
+msgid "Сохранить"
+msgstr "Захаваць"
+
+#: .\Frontend\templates\Backend\Parts\media.html:23
+#: .\Frontend\templates\Backend\Parts\post.html:22
+#: .\Frontend\templates\Backend\Parts\tag.html:22
+msgid "Отмена"
+msgstr "Адмена"
+
+#: .\Frontend\templates\Backend\Parts\media.html:33
+#: .\Frontend\templates\Backend\Parts\post.html:31
+#: .\Frontend\templates\Backend\Parts\tag.html:31
+msgid "Удалить"
+msgstr "Выдаліць"
+
+#: .\Frontend\templates\Backend\Parts\media.html:34
+#: .\Frontend\templates\Backend\Parts\post.html:32
+#: .\Frontend\templates\Backend\Parts\tag.html:32
+msgid "Изменить"
+msgstr "Змяніць"
+
+#: .\Frontend\templates\Backend\Parts\media.html:35
+msgid "Скачать"
+msgstr "Спампаваць"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:8
+msgid "Форма создания нового объекта"
+msgstr "Форма стварэння новага аб'екта"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:23
+msgid "Создать"
+msgstr "Стварыць"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:31
+msgid "Предыдущая"
+msgstr "Папярэдняя"
+
+#: .\Frontend\templates\Backend\Parts\pagination.html:34
+msgid "Следующая"
+msgstr "Наступная"
+
+#: .\Frontend\templates\Backend\Parts\post.html:36
+msgid "Опубликованно"
+msgstr "Апублікавана"
+
+#: .\Frontend\templates\Backend\Parts\post.html:40
+msgid "Обновленно"
+msgstr "Абноўлена"
+
+#: .\Frontend\templates\Backend\Parts\send_email.html:16
+msgid "Форма отправки почты"
+msgstr "Форма адпраўкі пошты"
+
+#: .\Frontend\templates\Backend\Parts\send_email.html:31
+msgid "Отправить"
+msgstr "Адправіць"
+
+#: .\Frontend\templates\base.html:22 .\Frontend\templates\domashnyaya.html:6
+msgid "Джанго сайт для теста деплоя"
+msgstr "Джанго сайт для тэсту дэплоя"
+
+#: .\Frontend\templates\base.html:61
+msgid "Все права защищены"
+msgstr "Усе правы абаронены"
+
+#: .\Frontend\templates\base.html:62
+msgid ""
+"\n"
+"\t\t\t<p>Сделано <b>Тимом Вебмастером</b>, для <b>Тимы Вебмастера</b></p> \n"
+"\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t<p>Зроблена <b>Цімам Вэбмайстрам</b>, для <b>Цімы Вэбмайстра</b></p> \n"
+"\t\t\t"
+
+#: .\Frontend\templates\domashnyaya.html:14
+msgid "Сайт для теста процесса деплоя на серверах"
+msgstr "Сайт для тэсту працэсу дэплою на серверах"
+
+#: .\Frontend\templates\domashnyaya.html:16
+msgid ""
+"\n"
+"        Данный сайт был разработан лишь с одной целью. С целью проверки "
+"возможности деплоя на различных серверах и прочих. Плюс возможность "
+"потренироваться в этом деле перед тем как заливать свой собственный сайт.\n"
+"        "
+msgstr ""
+"\n"
+"Дадзены сайт быў распрацаваны толькі з адной мэтай. З мэтай "
+"праверкімагчымасці дэплою на розных серверах і іншых. Плюс магчымасць "
+"патрэніравацца ў гэтай справе перад тым як заліваць свой уласны сайт.\n"
+" "
+
+#: .\Frontend\templates\domashnyaya.html:21
+msgid ""
+"\n"
+"        Поддерживаеммые тесты на данный момент:\n"
+"        "
+msgstr ""
+"\n"
+" Тэсты, якія падтрымліваюцца, на дадзены момант:\n"
+" "
+
+#: .\Frontend\templates\domashnyaya.html:26
+msgid "Работа с почтой. (Отправление писем на указанный почтовый адресс)"
+msgstr "Праца з поштай. (Адпраўленне лістоў на ўказаны паштовы адрас)"
+
+#: .\Frontend\templates\domashnyaya.html:27
+msgid ""
+"Работа с базой данных. (Добавление, Изменение, Удаление из БД. Плюс "
+"сортировка записей в БД)"
+msgstr ""
+"Праца з базай дадзеных. (Даданне, Змяненне, Выдаленне з БД. Плюс сартаванне "
+"запісаў у БД)"
+
+#: .\Frontend\templates\domashnyaya.html:28
+msgid ""
+"Работа с медиа файлами. (Загрузка их на сервер и возможность их получить)"
+msgstr ""
+"Праца з медыя файламі. (Загрузка іх на сервер і магчымасць іх атрымаць)"
+
+#: .\Frontend\templates\domashnyaya.html:29
+msgid "Работа со статическими файлами. (Их доступность)"
+msgstr "Праца са статычнымі файламі. (Іх даступнасць)"
+
+#: .\Frontend\templates\domashnyaya.html:30
+msgid "Работа тестов на сервере, их покрытие проектом"
+msgstr "Праца тэстаў на серверы, іх пакрыццё праектам"
+
+#: .\Frontend\templates\domashnyaya.html:31
+msgid ""
+"Работа с переводами. (Переводы шаблонов(<b>HTML</b>), переводы в "
+"скриптах(<b>JS</b>), переводы на сервере(<b>Python</b>))"
+msgstr ""
+"Праца з перакладамі. (Пераклады шаблонаў(<b>HTML</b>), пераклады ў "
+"скрыптах(<b>JS</b>), пераклады на серверы(<b>Python</b>))"
+
+#: .\Frontend\templates\test-database.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы базы данных"
+msgstr "Джанга сайт для тэсту дэплою. Тэст працы базы дадзеных"
+
+#: .\Frontend\templates\test-database.html:14
+msgid "Тестирование работы с базой данных"
+msgstr "Тэставанне працы з базай дадзеных"
+
+#: .\Frontend\templates\test-database.html:16
+msgid ""
+"\n"
+"        Данная страница предоставляет возможность проверить перенесена ли "
+"база данных корректно. Плюс, возможны ли такие\n"
+"        базовые операции с БД как добавление, удаление изменение и "
+"пагинирование. Для тестирования были созданны две модели\n"
+"        Tag и Post\n"
+"        "
+msgstr ""
+"\n"
+" Дадзеная старонка дае магчымасць праверыць ці перанесена база дадзеных "
+"карэктна. Плюс, ці магчымыя такія\n"
+" базавыя аперацыі з БД як даданне, выдаленне змена і пагінаванне. Для "
+"тэставання былі створаны дзве мадэлі\n"
+" Tag і Post\n"
+" "
+
+#: .\Frontend\templates\test-mail.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы с почтой"
+msgstr "Джанга сайт для тэсту дэплою. Тэст працы з поштай"
+
+#: .\Frontend\templates\test-mail.html:14
+msgid "Тестирование работы с почтой"
+msgstr "Тэставанне працы з поштай"
+
+#: .\Frontend\templates\test-mail.html:16
+msgid ""
+"\n"
+"        На этой странице ты можешь написать и отправить письмо на любой "
+"почтовый адрес. С тем условием, что настройка почты \n"
+"        на сервере была завершена успешна.\n"
+"        "
+msgstr ""
+"\n"
+"На гэтай старонцы ты можаш напісаць і адправіць ліст на любыпаштовы адрас. З "
+"той умовай, што настройка пошты \n"
+" на серверы была завершана паспяховая.\n"
+" "
+
+#: .\Frontend\templates\test-media.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы медиа файлов"
+msgstr "Джанга сайт для тэсту дэплою. Тэст працы медыя файлаў"
+
+#: .\Frontend\templates\test-media.html:14
+msgid "Тестирование работы медиа файлов"
+msgstr "Тэставанне працы медыя файлаў"
+
+#: .\Frontend\templates\test-media.html:16
+msgid ""
+"\n"
+"        На этой странице ты сможешь загрузить на сервер новый файл (проверка "
+"медиа), после чего скачать его обратно\n"
+"        "
+msgstr ""
+"\n"
+" На гэтай старонцы ты зможаш загрузіць на сервер новы файл (праверка медыя), "
+"пасля чаго спампаваць яго назад\n"
+" "
+
+#: .\Frontend\templates\test-media.html:20
+msgid "Получить доступные файлы"
+msgstr "Атрымаць даступныя файлы"
+
+#: .\Frontend\templates\test-static.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы статических файлов"
+msgstr "Джанга сайт для тэсту дэплою. Тэст працы статычных файлаў"
+
+#: .\Frontend\templates\test-static.html:14
+msgid "Тестирование работы статических файлов"
+msgstr "Тэставанне працы статычных файлаў"
+
+#: .\Frontend\templates\test-static.html:16
+msgid ""
+"\n"
+"        Эта страница должа будет загрузить некоторые статические файлы "
+"(изображения), с сервера. Если ты их получил\n"
+"        значит настройки сервера с работой со статикой успешны.\n"
+"        "
+msgstr ""
+"\n"
+" Гэтая старонка павінна будзе загрузіць некаторыя статычныя файлы (малюнкі), "
+"з сервера. Калі ты іх атрымаў\n"
+" значыць налады сервера з працай са статыкай паспяховыя.\n"
+" "
+
+#: .\Frontend\templates\test-testing.html:6
+msgid ""
+"Джанго сайт для теста деплоя. Тест работы тестирования сервера в эксплуатации"
+msgstr ""
+"Джанго сайт для тэсту дэплою. Тэст працы тэставання сервера ў эксплуатацыі"
+
+#: .\Frontend\templates\test-testing.html:14
+msgid "Тестирование работы тестирования на производственном сервере"
+msgstr "Тэставанне працы тэставання на вытворчым серверы"
+
+#: .\Frontend\templates\test-testing.html:16
+msgid ""
+"\n"
+"        "
+msgstr ""
+"\n"
+"        "
+
+#: .\Frontend\templates\test-translation.html:6
+msgid "Джанго сайт для теста деплоя. Тест работы переводов"
+msgstr "Джанга сайт для тэсту дэплою. Тэст працы перакладаў"
+
+#: .\Frontend\templates\test-translation.html:16
+msgid "Тестирование переводов"
+msgstr "Тэсціраванне перакладаў"
+
+#: .\Frontend\templates\test-translation.html:18
+msgid ""
+"\n"
+"        Здесь будет представлен некоторый текст, который должен быть "
+"доступен на различных языках. \n"
+"        Так же под перевод должны попасть любые строчки написанные на "
+"сервере или в JS коде.\n"
+"        "
+msgstr ""
+"\n"
+"Тут будзе прадстаўлены некаторы тэкст, які павінен быцьдаступны на розных "
+"мовах. \n"
+" Гэтак жа пад пераклад павінны патрапіць любыя радкі напісаныя на серверы "
+"або ў JS кодзе.\n"
+" "
+
+#: .\Frontend\templates\test-translation.html:24
+msgid "Это строчки с сервера"
+msgstr "Гэта радкі з сервера"
+
+#: .\Frontend\templates\test-translation.html:25
+msgid "Получить строки с сервера"
+msgstr "Атрымаць радкі з сервера"
+
+#: .\Frontend\templates\test-translation.html:28
+msgid "Это строчки из JS кода"
+msgstr "Гэта радкі з JS кода"
+
+#: .\Frontend\templates\test-translation.html:29
+msgid "Получить строки JS скриптов"
+msgstr "Атрымаць радкі JS скрыптоў"
+
+#: .\Frontend\views.py:42
+msgid "Это сообщение было отправленно с тестового сайта по деплою"
+msgstr "Гэтае паведамленне было адпраўлена з тэставага сайта па дэплоі."
+
+#: .\Frontend\views.py:50 .\Frontend\views.py:117
+msgid "Успешно отправил письмо"
+msgstr "Паспяхова адправіў ліст"
+
+#: .\Frontend\views.py:55
+msgid "Не смог отправить письмо"
+msgstr "Не змог адправіць ліст"
+
+#: .\Frontend\views.py:123
+msgid "Это сообщение с сервера"
+msgstr "Гэта паведамленне з сервера"
