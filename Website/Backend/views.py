@@ -133,8 +133,10 @@ class DetailedView(
             })
 
 class PostListView(ListView):
+    ''' Представление для пагинации объектов модели Post '''
+
     def get_queryset(self):
-        ''' Отфильтровать посты '''
+        ''' Отфильтровать объекты модели Post по тегам '''
         queryset = self.queryset.order_by('-timeCreated') 
         tags_str: list[str] = self.request.query_params.getlist('tag')
         tags = Tag.objects.filter(slug__in=tags_str)
@@ -143,48 +145,71 @@ class PostListView(ListView):
         return queryset
 
 class PostDetailedView(DetailedView):
+    ''' Представление для работы с отдельными объектами модели Tag '''
     pass
 
+
 class TagListView(ListView):
+    ''' Представление для пагинации объектов модели Tag '''
+
+    # Какую форму использовать для создания, редактирования объекта модели Media
     model_form = TagModelForm
+    # Суффикс для вызова соответствующих представлений
     call_root = 'tags'
+    # Какой шаблон использовать для рендеринга одного объекта модели Tag
     model_inst_rend_templ="Backend/Parts/tag.html"
 
     def get_queryset(self):
-        ''' Отфильтровать посты '''
+        ''' Отфильтровать Tag объекты '''
         queryset = self.queryset.order_by('name')
         return queryset
 
 class TagDetailedView(DetailedView):
+    ''' Представление для работы с отдельными объектами модели Tag '''
+
+    # Какой шаблон использовать для рендеринга одного объекта модели Tag
     template_name = 'Backend/Parts/tag.html'
+    # Какую форму использовать для создания, редактирования объекта модели Tag
     model_form = TagModelForm
 
 
 class MediaListView(ListView):
+    ''' Представление для пагинации объектов модели Media '''
+
+    # Какую форму использовать для создания, редактирования объекта модели Media
     model_form = MediaModelForm
+    # Суффикс для вызова соответствующих представлений
     call_root = 'medias'
+    # Какой шаблон использовать для рендеринга одного объекта модели Media
     model_inst_rend_templ="Backend/Parts/media.html"
 
     def get_queryset(self):
-        ''' Отфильтровать посты '''
+        ''' Отфильтровать Media объекты '''
         queryset = self.queryset.order_by('name')
         return queryset
 
 class MediaDetailedView(DetailedView):
+    ''' Представление для работы с отдельными объектами модели Media '''
+
+    # Какой шаблон использовать для рендеринга одного объекта модели Media
     template_name = 'Backend/Parts/media.html'
+    # Какую форму использовать для создания, редактирования объекта модели Media
     model_form = MediaModelForm
 
 def get_post_form(request, pk: int):
+    ''' Возвращет форму создания постов (Post - модель) '''
     post = Post.objects.get(pk=pk)
     post_form = PostModelForm(instance=post)
     return render(request, 'Backend/Parts/post.html', context={'post_edit_form': post_form, 'pk': post.pk})
 
 def get_tag_form(request, pk: int):
+    ''' Возвращет форму создания тегов (Tag - модель) '''
     tag = Tag.objects.get(pk=pk)
     tag_form = TagModelForm(instance=tag)
     return render(request, 'Backend/Parts/tag.html', context={'post_edit_form': tag_form, 'pk': tag.pk})
 
 def get_media_form(request, pk: int):
+    ''' Возвращет форму создания медиа (Media - модель) '''
     media = Media.objects.get(pk=pk)
     media_form = MediaModelForm(instance=media)
     return render(request, 'Backend/Parts/media.html', context={'post_edit_form': media_form, 'pk': media.pk})
