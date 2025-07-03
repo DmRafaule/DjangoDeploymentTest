@@ -10,6 +10,7 @@ from rest_framework.test import APIClient
 from Backend.models import Post, Tag, Media
 from Backend.views import PostListView, TagListView, MediaListView
 from Backend.serializers import PostSerializer, TagSerializer, MediaSerializer
+from Website.settings import STAGING_SERVER
 
 
 class ListViewTest(LiveServerTestCase):
@@ -41,31 +42,47 @@ class ListViewTest(LiveServerTestCase):
     
     def test_get_request_for_posts(self):
         ''' Проверяем работу GET запроса, получение списка постов '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка пагинации для постов
-        response = client.get(f'{self.live_server_url}/en/api/posts/?page=1&limit=4')
+        response = client.get(f'{SERVER_URL}/en/api/posts/?page=1&limit=4')
         self.assertEqual(len(response.data.get('posts')), len(Post.objects.all()))
     
     def test_get_request_for_tags(self):
         ''' Проверяем работу GET запроса, получение списка тегов '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка пагинации для тегов
-        response = client.get(f'{self.live_server_url}/en/api/tags/?page=1&limit=4')
+        response = client.get(f'{SERVER_URL}/en/api/tags/?page=1&limit=4')
         self.assertEqual(len(response.data.get('posts')), len(Tag.objects.all()))
     
     def test_get_request_for_medias(self):
         ''' Проверяем работу GET запроса, получение списка медиа '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка пагинации для медиа
-        response = client.get(f'{self.live_server_url}/en/api/medias/?page=1&limit=4')
+        response = client.get(f'{SERVER_URL}/en/api/medias/?page=1&limit=4')
         self.assertEqual(len(response.data.get('posts')), len(Media.objects.all()))
     
     def test_post_request_for_posts(self):
         ''' Проверяем работу POST запроса, добавление поста элемента '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка правильной отправленной формы для создания поста
         response = client.post(
-            f'{self.live_server_url}/en/api/posts/',
+            f'{SERVER_URL}/en/api/posts/',
             data = {
                 "tags": [],
                 "title": "New title",
@@ -75,7 +92,7 @@ class ListViewTest(LiveServerTestCase):
         self.assertIs(response.status_code, status.HTTP_201_CREATED )
         # Проверка не правильной отправленной формы для создания поста
         response = client.post(
-            f'{self.live_server_url}/en/api/posts/',
+            f'{SERVER_URL}/en/api/posts/',
             data = {
                 "tags": [],
                 "description": "New descr",
@@ -85,10 +102,14 @@ class ListViewTest(LiveServerTestCase):
 
     def test_post_request_for_tags(self):
         ''' Проверяем работу POST запроса, добавление нового тега '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка правильной отправленной формы для создания тега
         response = client.post(
-            f'{self.live_server_url}/en/api/tags/',
+            f'{SERVER_URL}/en/api/tags/',
             data = {
                 "name": "New name",
                 "slug": "new-slug",
@@ -96,7 +117,7 @@ class ListViewTest(LiveServerTestCase):
         self.assertIs(response.status_code, status.HTTP_201_CREATED )
         # Проверка не правильной отправленной формы для создания тега
         response = client.post(
-            f'{self.live_server_url}/en/api/tags/',
+            f'{SERVER_URL}/en/api/tags/',
             data = {
                 "name": "New name",
             })
@@ -104,11 +125,15 @@ class ListViewTest(LiveServerTestCase):
 
     def test_post_request_for_medias(self):
         ''' Проверяем работу POST запроса, добавление нового медиа '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         # Проверка правильной отправленной формы для создания медиа
         new_file = ContentFile("CONTENT", 'file_new.txt')
         response = client.post(
-            f'{self.live_server_url}/en/api/medias/',
+            f'{SERVER_URL}/en/api/medias/',
             data = {
                 "name": "New-name",
                 "file": new_file
@@ -116,7 +141,7 @@ class ListViewTest(LiveServerTestCase):
         self.assertIs(response.status_code, status.HTTP_201_CREATED )
         # Проверка не правильной отправленной формы для создания медиа
         response = client.post(
-            f'{self.live_server_url}/en/api/medias/',
+            f'{SERVER_URL}/en/api/medias/',
             data = {
                 "name": "New-name",
             })

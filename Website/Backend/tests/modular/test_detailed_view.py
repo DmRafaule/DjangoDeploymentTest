@@ -9,6 +9,7 @@ from rest_framework.test import APIClient
 from Backend.models import Post, Tag, Media
 from Backend.views import PostDetailedView, TagDetailedView, MediaDetailedView
 from Backend.serializers import PostSerializer, TagSerializer, MediaSerializer
+from Website.settings import STAGING_SERVER
 
 
 class DetailedViewTest(LiveServerTestCase):
@@ -44,20 +45,25 @@ class DetailedViewTest(LiveServerTestCase):
 
     def test_get_request(self):
         ''' Проверяем работу GET запроса '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        
         ## Конструируем запрос для поста
-        get_posts_django_request = RequestFactory().get(f"{self.live_server_url}/en/api/posts/{self.post.pk}")
+        get_posts_django_request = RequestFactory().get(f"{SERVER_URL}/en/api/posts/{self.post.pk}")
         get_posts_request = Request(get_posts_django_request)
         self.post_detailed_view.request = get_posts_request
         inst: Response = self.post_detailed_view.get(get_posts_request)
         self.assertIsInstance(inst.data.get('post'), Post)
         ## Конструируем запрос для тега
-        get_tags_django_request = RequestFactory().get(f"{self.live_server_url}/en/api/tags/{self.tag.pk}")
+        get_tags_django_request = RequestFactory().get(f"{SERVER_URL}/en/api/tags/{self.tag.pk}")
         get_tags_request = Request(get_tags_django_request)
         self.tag_detailed_view.request = get_tags_request
         inst: Response = self.tag_detailed_view.get(get_tags_request)
         self.assertIsInstance(inst.data.get('post'), Tag)
         ## Конструируем запрос для медиа
-        get_medias_django_request = RequestFactory().get(f"{self.live_server_url}/en/api/medias/{self.media.pk}")
+        get_medias_django_request = RequestFactory().get(f"{SERVER_URL}/en/api/medias/{self.media.pk}")
         get_medias_request = Request(get_medias_django_request)
         self.media_detailed_view.request = get_medias_request
         inst: Response = self.media_detailed_view.get(get_medias_request)
@@ -65,20 +71,24 @@ class DetailedViewTest(LiveServerTestCase):
 
     def test_delete_request(self):
         ''' Проверяем работу DELETE запроса '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         ## Конструируем запрос для поста
-        delete_posts_django_request = RequestFactory().delete(f"{self.live_server_url}/en/api/posts/{self.post.pk}")
+        delete_posts_django_request = RequestFactory().delete(f"{SERVER_URL}/en/api/posts/{self.post.pk}")
         delete_posts_request = Request(delete_posts_django_request)
         self.post_detailed_view.request = delete_posts_request
         inst: Response = self.post_detailed_view.delete(delete_posts_request)
         self.assertTrue(inst.data.get('is_delete'))
         ## Конструируем запрос для тега
-        delete_tags_django_request = RequestFactory().delete(f"{self.live_server_url}/en/api/tags/{self.tag.pk}")
+        delete_tags_django_request = RequestFactory().delete(f"{SERVER_URL}/en/api/tags/{self.tag.pk}")
         delete_tags_request = Request(delete_tags_django_request)
         self.tag_detailed_view.request = delete_tags_request
         inst: Response = self.tag_detailed_view.delete(delete_tags_request)
         self.assertTrue(inst.data.get('is_delete'))
         ## Конструируем запрос для медиа
-        delete_medias_django_request = RequestFactory().delete(f"{self.live_server_url}/en/api/medias/{self.media.pk}")
+        delete_medias_django_request = RequestFactory().delete(f"{SERVER_URL}/en/api/medias/{self.media.pk}")
         delete_medias_request = Request(delete_medias_django_request)
         self.media_detailed_view.request = delete_medias_request
         inst: Response = self.media_detailed_view.delete(delete_medias_request)
@@ -86,11 +96,15 @@ class DetailedViewTest(LiveServerTestCase):
     
     def test_put_request(self):
         ''' Проверяем работу PUT запроса '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         client = APIClient()
         ## Конструируем запрос для поста
         post_before_pk = self.post.pk
         post_before_title = self.post.title
-        client.put(f"{self.live_server_url}/en/api/posts/{self.post.pk}", 
+        client.put(f"{SERVER_URL}/en/api/posts/{self.post.pk}", 
             data={
                 "tags": [],
                 "title": "New title",
@@ -103,7 +117,7 @@ class DetailedViewTest(LiveServerTestCase):
         ## Конструируем запрос для тега
         tag_before_pk = self.tag.pk
         tag_before_name = self.tag.name
-        client.put(f"{self.live_server_url}/en/api/tags/{self.tag.pk}", 
+        client.put(f"{SERVER_URL}/en/api/tags/{self.tag.pk}", 
             data={
                 "name": "New name",
                 "slug": "new-slug",
@@ -115,7 +129,7 @@ class DetailedViewTest(LiveServerTestCase):
         media_before_pk = self.media.pk
         media_before_name = self.media.name
         new_file = ContentFile("CONTENT", 'file_new.txt')
-        client.put(f"{self.live_server_url}/en/api/medias/{self.media.pk}", 
+        client.put(f"{SERVER_URL}/en/api/medias/{self.media.pk}", 
             data={
                 "name": "New-name",
                 "file": new_file

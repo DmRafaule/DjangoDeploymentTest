@@ -6,7 +6,8 @@ from django.urls import reverse
 from django.contrib.staticfiles import finders
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-from Website.settings import STATIC_URL, MEDIA_URL
+from Website.settings import STATIC_URL, MEDIA_URL, STAGING_SERVER
+
 
 class StaticTests(StaticLiveServerTestCase):
     ''' Проверка на доступность статических файлов '''
@@ -30,6 +31,10 @@ class StaticTests(StaticLiveServerTestCase):
          2) которые были успешно загружены
          3) которые не удалось загрузить
          '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         statics = self.browser.find_elements(By.CSS_SELECTOR, css_selector)
         statics_must_be_loaded = []
         statics_failed_to_be_loaded = []
@@ -41,7 +46,7 @@ class StaticTests(StaticLiveServerTestCase):
                 # Если статический УРЛ в самом поле присутствует
                 if STATIC_URL in static_src:
                     statics_must_be_loaded.append(static_src)
-                    if finders.find(static_src.replace(f"{self.live_server_url}",'').replace(f"{STATIC_URL}",'')) is not None:
+                    if finders.find(static_src.replace(f"{SERVER_URL}",'').replace(f"{STATIC_URL}",'')) is not None:
                         statics_successfully_loaded.append(static_src)
                     else:
                         statics_failed_to_be_loaded.append(static_src)
@@ -65,35 +70,63 @@ class StaticTests(StaticLiveServerTestCase):
 
     def test_static_files_on_home_page(self):
         ''' Проверка статических файлов на домашней странице '''
-        self.browser.get(f'{self.live_server_url}{reverse('domashnyaya')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('domashnyaya')}')
         self.check_static_files()
 
     def test_static_files_on_test_mail_page(self):
         ''' Проверка статических файлов на странице тестирования почты '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-mail')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-mail')}')
         self.check_static_files()
 
     def test_static_files_on_test_database_page(self):
         ''' Проверка статических файлов на странице тестирования базы данных '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-database')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-database')}')
         self.check_static_files()
 
     def test_static_files_on_test_media_page(self):
         ''' Проверка статических файлов на странице тестирования медиа '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-media')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-media')}')
         self.check_static_files()
 
     def test_static_files_on_test_static_page(self):
         ''' Проверка статических файлов на странице тестирования статики '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-static')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-static')}')
         self.check_static_files()
 
     def test_static_files_on_test_testing_page(self):
         ''' Проверка статических файлов на странице тестирования тестов '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-testing')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-testing')}')
         self.check_static_files()
 
     def test_static_files_on_test_translation_page(self):
         ''' Проверка статических файлов на странице тестирования переводов '''
-        self.browser.get(f'{self.live_server_url}{reverse('test-translation')}')
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        self.browser.get(f'{SERVER_URL}{reverse('test-translation')}')
         self.check_static_files()

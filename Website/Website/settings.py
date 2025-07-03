@@ -29,6 +29,7 @@ SECRET_KEY = settings["SECRET_KEY"]
 DEBUG = settings["DEBUG"]
 
 ALLOWED_HOSTS = settings["ALLOWED_HOSTS"]
+STAGING_SERVER = settings["STAGING_SERVER"]
 
 # Application definition
 INSTALLED_APPS = [

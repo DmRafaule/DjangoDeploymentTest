@@ -2,6 +2,7 @@ from django.test import LiveServerTestCase
 from django.core.files.base import ContentFile
 
 from Backend.models import Post, Tag, Media
+from Website.settings import STAGING_SERVER
 
 
 class RightHTMLTest( LiveServerTestCase):
@@ -17,15 +18,27 @@ class RightHTMLTest( LiveServerTestCase):
 
     def test_post_returned_right_html(self):
         ''' Тест на правильно возвращаемый шаблон для формы создания постов '''
-        response = self.client.get(f"{self.live_server_url}/en/api/get_post_form/{self.post.pk}")
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        response = self.client.get(f"{SERVER_URL}/en/api/get_post_form/{self.post.pk}")
         self.assertTemplateUsed(response, 'Backend/Parts/post.html')
 
     def test_tag_returned_right_html(self):
         ''' Тест на правильно возвращаемый шаблон для формы создания тегов '''
-        response = self.client.get(f"{self.live_server_url}/en/api/get_tag_form/{self.tag.pk}")
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        response = self.client.get(f"{SERVER_URL}/en/api/get_tag_form/{self.tag.pk}")
         self.assertTemplateUsed(response, 'Backend/Parts/tag.html')
 
     def test_media_returned_right_html(self):
         ''' Тест на правильно возвращаемый шаблон для формы создания тегов '''
-        response = self.client.get(f"{self.live_server_url}/en/api/get_media_form/{self.media.pk}")
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
+        response = self.client.get(f"{SERVER_URL}/en/api/get_media_form/{self.media.pk}")
         self.assertTemplateUsed(response, 'Backend/Parts/media.html')

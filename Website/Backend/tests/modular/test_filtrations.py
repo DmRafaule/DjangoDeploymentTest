@@ -6,6 +6,7 @@ from rest_framework.request import Request
 from Backend.models import Post, Tag, Media
 from Backend.views import PostListView
 from Backend.serializers import PostSerializer
+from Website.settings import STAGING_SERVER
 
 
 class FiltrationTest(LiveServerTestCase):
@@ -26,8 +27,12 @@ class FiltrationTest(LiveServerTestCase):
     
     def test_tag_filtration_for_post(self):
         ''' Проверка на правильность фильтрации по тегам '''
+        if STAGING_SERVER:
+            SERVER_URL = STAGING_SERVER
+        else:
+            SERVER_URL = self.live_server_url
         # Конструируем запрос
-        django_request = RequestFactory().get(f"{self.live_server_url}/en/api/posts/?page=1&limit=4&tag=tag-2")
+        django_request = RequestFactory().get(f"{SERVER_URL}/en/api/posts/?page=1&limit=4&tag=tag-2")
         request = Request(django_request)
         # Конструируем класс-представление
         cl_view = PostListView()
