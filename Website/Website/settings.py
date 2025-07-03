@@ -13,25 +13,24 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# Read the settings file
+with open(os.path.join(BASE_DIR,"settings.json"), 'r') as settings_file:
+    settings = json.load(settings_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4#-wrp_(53^0_9$%p8lq+qf43z0dx0ji6bh!sa1mfn^l)4-lq@'
+SECRET_KEY = settings["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = settings["DEBUG"]
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = settings["ALLOWED_HOSTS"]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -98,12 +97,7 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = settings["DATABASES"]
 
 
 # Password validation
@@ -177,9 +171,9 @@ HEADLESS_FRONTEND_URLS = {
 
 
 # For email sending 
-DEFAULT_FROM_EMAIL = 'timachuduk@timthewebmaster.com'
-DEFAULT_TO_EMAIL = 'timachuduk@gmail.com'
-EMAIL_HOST = 'smtp.beget.com'
-EMAIL_PORT = 25 
-EMAIL_HOST_USER = 'timachuduk@timthewebmaster.com' # Maybe change to timachuduk@timthewebmaster.com
-EMAIL_HOST_PASSWORD = 'EXNIkq1&yfOx'
+DEFAULT_FROM_EMAIL = settings["EMAIL"]["DEFAULT_FROM_EMAIL"]
+DEFAULT_TO_EMAIL = settings["EMAIL"]["DEFAULT_TO_EMAIL"]
+EMAIL_HOST = settings["EMAIL"]["EMAIL_HOST"]
+EMAIL_PORT = settings["EMAIL"]["EMAIL_PORT"]
+EMAIL_HOST_USER = settings["EMAIL"]["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = settings["EMAIL"]["EMAIL_HOST_PASSWORD"]

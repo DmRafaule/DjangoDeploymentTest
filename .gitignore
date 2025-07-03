@@ -92,3 +92,4 @@ Docs
 node_modules
 package-lock.json
 Website/db.sqlite3
+Website/settings.json
