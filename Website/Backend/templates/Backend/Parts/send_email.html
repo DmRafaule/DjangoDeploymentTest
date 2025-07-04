@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load static %}
+
+
+<form id="send_email_form" hx-encoding='multipart/form-data'>
+    {% if message %}
+    <div class="toast toast-top toast-end">
+        <div role="alert" class="alert alert-{{status}}">
+            <span>{{message}}</span>
+        </div>
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    <fieldset class="fieldset rounded-selector  bg-base-200 border-base-300">
+        <legend class="fieldset-legend resize-none">
+            <h2>{% trans 'Форма отправки почты' %}</h2>
+        </legend>
+        {% for field in send_email_form %}
+            <div class="fieldWrapper">
+                <div class="fieldset">
+                    <legend class="fieldset-legend resize-none justify-start">
+                        {{ field.label_tag }}
+                        {% if field.errors %}
+                        <div class="badge badge-error">{{ field.errors }}</div>
+                        {% endif %}
+                    </legend>
+                    {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+        <input class="rounded-selector btn btn-block" type="submit" hx-post="" hx-target="#send_email_form" hx-swap="outerHTML" hx-headers='js:{"X-CSRFTOKEN": document.querySelector("[name=csrfmiddlewaretoken]").value}' value="{% trans 'Отправить' %}">
+    </fieldset>
+</form>

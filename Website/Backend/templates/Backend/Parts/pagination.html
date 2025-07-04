@@ -1,0 +1,40 @@
+{% load i18n %}
+
+{% get_current_language as LC %}
+{% if not to_update %}
+<div id="paginator-container" class=" flex flex-col gap-[48px]">
+    <form id="post_form" hx-encoding='multipart/form-data'>
+        <fieldset class="fieldset rounded-selector  bg-base-200 border-base-300">
+            <legend class="fieldset-legend resize-none">
+                <h2>{% trans 'Форма создания нового объекта' %}</h2>
+            </legend>
+            {% csrf_token %}
+            {% for field in post_form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    <div class="fieldset">
+                        <legend class="fieldset-legend resize-none">
+                            {{ field.label_tag }}
+                        </legend>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <input class="rounded-selector btn btn-block" type="submit" hx-post="/{{LC}}/api/{{call_root}}/" hx-target="#trash" value="{% trans 'Создать' %}">
+            <div id="trash"></div>
+        </fieldset>
+    </form>
+
+    {% include "Backend/Parts/posts.html" with posts=posts templ=model_inst_rend_templ %}
+    <div class="flex flex-row gap-[10px]">
+        {% if prev_link %}
+        <button class="rounded-selector btn flex-auto" hx-get="{{prev_link}}" hx-target="#paginator-container">{% trans 'Предыдущая' %}</button>
+        {% endif %}
+        {% if next_link %}
+        <button class="rounded-selector btn flex-auto" hx-get="{{next_link}}" hx-target="#paginator-container">{% trans 'Следующая' %}</button>
+        {% endif %}
+    </div>
+    <hr class="w-full">
+</div>
+{% endif %}

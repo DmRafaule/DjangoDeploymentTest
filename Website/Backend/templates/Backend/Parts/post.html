@@ -1,0 +1,53 @@
+{% load i18n %}
+
+{% get_current_language as LC %}
+{% if post_edit_form %}
+<div id="post-{{pk}}">
+    <form id="post_edit_form">
+        <fieldset class="fieldset rounded-selector  bg-base-200 border-base-300">
+            <legend class="fieldset-legend resize-none">
+                <h2>{% trans 'Форма редактирования объекта' %}</h2>
+            </legend>
+            {% for field in post_edit_form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    <div class="fieldset">
+                        <legend class="fieldset-legend resize-none">
+                            {{ field.label_tag }}
+                        </legend>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <input class="rounded-selector btn btn-block" type="submit" hx-put="/{{LC}}/api/posts/{{pk}}" hx-target="#post-{{pk}}" hx-swap="outerHTML" hx-headers='js:{"X-CSRFTOKEN": document.querySelector("[name=csrfmiddlewaretoken]").value}' value="{% trans 'Сохранить' %}">
+            <input class="rounded-selector btn btn-block" type="submit" hx-get="/{{LC}}/api/posts/{{pk}}" hx-target="#post-{{pk}}" hx-swap="outerHTML" value="{% trans 'Отмена' %}">
+        </fieldset>
+    </form>
+</div>
+{% else %}
+    {% if not is_delete %}
+        <div id="post-{{post.pk}}">
+            <div class="flex-row flex gap-[15px] items-center">
+                <h2>{{post.title}}</h2>
+                <button class="btn btn-dash btn-error rounded-selector" hx-delete="/{{LC}}/api/posts/{{post.pk}}" hx-target="#post-{{post.pk}}" hx-swap="outerHTML" hx-headers='js:{"X-CSRFTOKEN": document.querySelector("[name=csrfmiddlewaretoken]").value}'>{% trans 'Удалить' %}</button>
+                <button class="btn btn-dash btn-warning rounded-selector" hx-get="/{{LC}}/api/get_post_form/{{post.pk}}" hx-target="#post-{{post.pk}}" hx-swap="outerHTML">{% trans 'Изменить' %}</button>
+            </div>
+            <div class="flex flex-row gap-[10px]">
+                <div class="flex flex-row gap-[5px]">
+                    <div><b>{% trans 'Опубликованно' %}</b></div>
+                    <div>{{post.timeCreated}}</div>
+                </div>
+                <div class="flex flex-row gap-[5px]">
+                    <div><b>{% trans 'Обновленно' %}</b></div>
+                    <div>{{post.timeUpdated}}</div>
+                </div>
+            </div>
+            <div class="flex flex-row gap-[10px]">
+                {% for tag in post.tags.all %}
+                <p class="badge badge-accent">{{tag.name}}</p>
+                {% endfor %}
+            </div>
+            <p>{{post.description}}</p>
+        </div>
+    {% endif %}
+{% endif %}

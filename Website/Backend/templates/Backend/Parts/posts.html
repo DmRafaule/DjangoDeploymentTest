@@ -1,0 +1,10 @@
+{% load static %}
+{% load i18n %}
+
+
+<div class="flex flex-col gap-[20px]">
+{% for post in posts %}
+    {% include templ with post=post %}
+{% endfor %}
+</div>
+<div hx-get="{{next_link}}"></div>
