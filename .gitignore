@@ -86,9 +86,10 @@ local_settings.py
 
 venv
 db.sqlite3
-media
 Docs
 node_modules
 package-lock.json
 Website/db.sqlite3
 Website/settings.json
+Website/static
+Website/media
