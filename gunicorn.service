@@ -1,0 +1,9 @@
+[Unit]
+    Description=Gunicorn server for beget-django-deployment-test.online
+[Service]
+    Restart=on-failure  
+    User=dima  
+    WorkingDirectory=/home/dima/sites/www.staging.beget-django-deployment-test.online/source  
+    ExecStart=/home/dima/sites/www.staging.beget-django-deployment-test.online/source/start-gunicorn.sh
+[Install]
+    WantedBy=multi-user.target

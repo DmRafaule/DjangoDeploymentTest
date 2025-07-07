@@ -2,5 +2,5 @@
 
 cd /home/dima/sites/www.staging.beget-django-deployment-test.online
 source ./venv/bin/activate
-cd DjangoDeploymentTest/Website
+cd source/Website
 gunicorn --bind unix:/tmp/staging.beget-django-deployment-test.online.socket Website.wsgi:application  
