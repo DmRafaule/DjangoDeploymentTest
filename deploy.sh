@@ -113,6 +113,8 @@ else
     echo "  INFO: Soft link to {{$ROOT_SITE_FOLDER/media}} already exist"
 fi
 
+
+
 echo " <<< DJANGO PREPARATION >>>"
 ## Collect statics
 python manage.py collectstatic --noinput > /dev/null 2>&1
