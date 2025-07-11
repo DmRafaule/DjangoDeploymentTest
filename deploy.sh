@@ -3,11 +3,12 @@
 # Variables
 REPO="https://github.com/DmRafaule/DjangoDeploymentTest.git"
 REPO_FOLDER="source"
-HOST="beget-django-deployment-test.online"
-ROOT_SITE_FOLDER=/home/$USER/sites/www.$HOST
+HOST=$1
+ROOT_SITE_FOLDER=/home/$USER/$HOST
 SOURCE_FOLDER=$ROOT_SITE_FOLDER/$REPO_FOLDER
 WEBSITE_FOLDER=$SOURCE_FOLDER/Website
 INIT_SETTINGS_FILE="$(pwd)/Website/settings.json"
+ARGS=("--skip-tests" "-s")
 
 # Notes
 #> /dev/null 2>&1  -- means that any command output either successfull or failed will be suppressed and hided
@@ -21,9 +22,27 @@ status() {
         exit
     fi
 }
+# Thanks to https://stackoverflow.com/a/56431189/14551020
+has_param() {
+    local term="$1"
+    shift
+    for arg in ${ARGS[@]} ; do
+        if [[ $arg == "$term" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 
 echo "<<< START DEPLOY PROCCESS >>>"
+
+if [ -z $1 ]; then
+    echo "  INFO: You need to specify your host name like website.com or staging.website.com"
+    echo "<<< END DEPLOY PROCCESS >>>"
+    exit 1
+fi
+
 echo " <<< CREATE A FOLDER STRUCTURE >>>"
 # Create a project structure
 mkdir -p $ROOT_SITE_FOLDER > /dev/null 2>&1
@@ -85,7 +104,7 @@ status "Now in {{$ROOT_SITE_FOLDER}}" "Could not to enter {{$ROOT_SITE_FOLDER}}"
 if [ -d "$ROOT_SITE_FOLDER/venv" ]; then
     echo "  INFO: Virtual environment already exist"
 else 
-    python -m venv venv
+    python3 -m venv venv
     status "Successfully created a virtual environment for project" "Failed to create a virtual environment for project"
 fi
 ## Activate the virtual environment
@@ -125,8 +144,12 @@ status "Successfully compiled translation messages" "Failed to compiled translat
 ## Make migrations
 python manage.py migrate --noinput > /dev/null 2>&1
 status "Successfully migrate the database" "Failed to migrate the database"
-## Run tests
-python manage.py test > /dev/null 2>&1
-status "Passed all tests" "Failed to pass the tests"
+
+## Run tests only if params not used (ARGS)
+if ! has_param $2; then
+    echo "  INFO: Init testing"
+    python manage.py test
+    status "Passed all tests" "Failed to pass the tests"
+fi
 
 echo "<<< END DEPLOY PROCCESS >>>"
