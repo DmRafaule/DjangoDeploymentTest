@@ -5,6 +5,7 @@ HOST=$1
 SOURCE_FOLDER=$(pwd)
 NEW_AVAILABLE_SITE_FILE=$HOST.conf
 GATEWAY_FOR_SITE_FILE=gunicorn-$HOST.service
+ARGS=($@)
 
 # Helper functions
 status() {
@@ -13,6 +14,33 @@ status() {
     else
         echo "  ERR: $2"
         exit
+    fi
+}
+# Thanks to https://stackoverflow.com/a/56431189/14551020
+has_param() {
+    local term="$1"
+    shift
+    for arg in ${ARGS[@]} ; do
+        if [[ $arg == "$term" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+setup_nginx(){
+    CONF_TO_EDIT="$1"
+    POSTFIX="$2"
+    sed "s/HOST_PLACE_SETUP/$HOST/g" $CONF_TO_EDIT | sed "s/USER_PLACE_SETUP/$USER/g" > $POSTFIX--$NEW_AVAILABLE_SITE_FILE 
+    status "Edited file {{$CONF_TO_EDIT}} and created new one {{$POSTFIX--$NEW_AVAILABLE_SITE_FILE}}" "Could not edit file {{$CONF_TO_EDIT}}"
+
+    echo " <<< MOVE AND LINK NEW NGINX CONFIGURATION >>>"
+    sudo mv $POSTFIX--$NEW_AVAILABLE_SITE_FILE /etc/nginx/sites-available/ > /dev/null 2>&1
+    status "Moved a file {{$POSTFIX--$NEW_AVAILABLE_SITE_FILE}} into /etc/nginx/sites-available"
+    if [ ! -e /etc/nginx/sites-enabled/$POSTFIX--$NEW_AVAILABLE_SITE_FILE ]; then
+        sudo ln -s /etc/nginx/sites-available/$POSTFIX--$NEW_AVAILABLE_SITE_FILE /etc/nginx/sites-enabled/$POSTFIX--$NEW_AVAILABLE_SITE_FILE > /dev/null 2>&1
+        status "Created a symbolic links from {{/etc/nginx/sites/available/$POSTFIX--$NEW_AVAILABLE_SITE_FILE}} to {{/etc/nginx/sites-enabled/$POSTFIX--$NEW_AVAILABLE_SITE_FILE}}" "Could not create a symbolic link"
+    else
+        echo "  INFO: Symbolic link already exists {{/etc/nginx/sites-enabled/$POSTFIX--$NEW_AVAILABLE_SITE_FILE}}"
     fi
 }
 
@@ -24,26 +52,31 @@ if [ -z $1 ]; then
     exit 1
 fi
 
-echo " <<< SETUP THE NEW SERVERS FILE (nginx web-server and gunicorn gateway server) >>>"
-sed "s/HOST_PLACE_SETUP/$HOST/g" nginx-server.conf | sed "s/USER_PLACE_SETUP/$USER/g" > $NEW_AVAILABLE_SITE_FILE 
-status "Edited file {{nginx-server.conf}} and created new one {{$NEW_AVAILABLE_SITE_FILE}}" "Could not edit file {{nginx-server.conf}}"
-sed "s/HOST_PLACE_SETUP/$HOST/g" gunicorn.service | sed "s/USER_PLACE_SETUP/$USER/g" > $GATEWAY_FOR_SITE_FILE
-status "Edited file {{gunicorn.service}} and created new one {{$GATEWAY_FOR_SITE_FILE}}" "Could not edit file {{gunicorn.service}}"
+echo " <<< SETUP THE NGINX >>>"
 
-echo " <<< MOVE AND LINK NEW NGINX CONFIGURATION >>>"
-sudo mv $NEW_AVAILABLE_SITE_FILE /etc/nginx/sites-available/ > /dev/null 2>&1
-status "Moved a file {{$NEW_AVAILABLE_SITE_FILE}} into /etc/nginx/sites-available"
-if [ ! -e /etc/nginx/sites-enabled/$NEW_AVAILABLE_SITE_FILE ]; then
-    sudo ln -s /etc/nginx/sites-available/$NEW_AVAILABLE_SITE_FILE /etc/nginx/sites-enabled/$NEW_AVAILABLE_SITE_FILE > /dev/null 2>&1
-    status "Created a symbolic links from {{/etc/nginx/sites/available/$NEW_AVAILABLE_SITE_FILE}} to {{/etc/nginx/sites-enabled/$NEW_AVAILABLE_SITE_FILE}}" "Could not create a symbolic link"
+SITES_AVAILABLE=("http--$NEW_AVAILABLE_SITE_FILE" "https--$NEW_AVAILABLE_SITE_FILE")
+for available_site in ${SITES_AVAILABLE[@]}; do
+    if [ -e /etc/nginx/sites-available/$available_site ]; then
+        sudo rm /etc/nginx/sites-available/$available_site
+        sudo rm /etc/nginx/sites-enabled/$available_site
+    fi
+done
+
+if has_param 'on_https'; then 
+    sudo $SOURCE_FOLDER/../venv/bin/certbot certonly --nginx --agree-tos -q -d $HOST
+    status "Obtained, register and place the certificates" "Failed to obtain, register and place the certificates"
+    setup_nginx "nginx-server-on_https-301.conf" "http"
+    setup_nginx "nginx-server-on_https.conf" "https"
 else
-    echo "  INFO: Symbolic link already exists {{/etc/nginx/sites-enabled/$NEW_AVAILABLE_SITE_FILE}}"
+    setup_nginx "nginx-server-http_only.conf" "http"
 fi
 sudo systemctl unmask nginx 
 sudo systemctl restart nginx > /dev/null 2>&1
 status "Restart the nginx daemon" "Could not restart the nginx daemon"
 
-echo " <<< MOVE NEW GUNICORN CONFIGURATION >>>"
+echo " <<< SETUP THE GUNICORN >>>"
+sed "s/HOST_PLACE_SETUP/$HOST/g" gunicorn.service | sed "s/USER_PLACE_SETUP/$USER/g" > $GATEWAY_FOR_SITE_FILE
+status "Edited file {{gunicorn.service}} and created new one {{$GATEWAY_FOR_SITE_FILE}}" "Could not edit file {{gunicorn.service}}"
 cd $SOURCE_FOLDER
 status "Now in {{$(pwd)}}" "Could not to enter {{$SOURCE_FOLDER}}"
 sudo mv $GATEWAY_FOR_SITE_FILE /etc/systemd/system/$GATEWAY_FOR_SITE_FILE
