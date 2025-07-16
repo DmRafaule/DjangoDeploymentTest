@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PostListView, TagListView, MediaListView, PostDetailedView, TagDetailedView, MediaDetailedView, get_post_form, get_tag_form, get_media_form
+from .views import PostListView, TagListView, MediaListView, PostDetailedView, TagDetailedView, MediaDetailedView, get_post_form, get_tag_form, get_media_form, remove_part
 from .serializers import PostSerializer, TagSerializer, MediaSerializer
 from .models import Post, Tag, Media
 
@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('api/get_post_form/<int:pk>', get_post_form),
     path('api/get_tag_form/<int:pk>', get_tag_form),
-    path('api/get_media_form/<int:pk>', get_media_form)
+    path('api/get_media_form/<int:pk>', get_media_form),
+    path('api/cleanup', remove_part)
 ]

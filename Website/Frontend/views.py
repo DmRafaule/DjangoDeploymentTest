@@ -3,7 +3,6 @@ import json
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
-from django.template.response import TemplateResponse
 from django.core.mail import send_mail
 from django.template import loader
 from django.test import RequestFactory

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import QuerySet
 from django.utils.translation import gettext as _
+from django.http.response import HttpResponse
 
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -213,3 +214,6 @@ def get_media_form(request, pk: int):
     media = Media.objects.get(pk=pk)
     media_form = MediaModelForm(instance=media)
     return render(request, 'Backend/Parts/media.html', context={'post_edit_form': media_form, 'pk': media.pk})
+
+def remove_part(request):
+    return HttpResponse("")

@@ -2,9 +2,10 @@
 {% load static %}
 
 
+{% get_current_language as LC %}
 <form id="send_email_form" hx-encoding='multipart/form-data'>
     {% if message %}
-    <div class="toast toast-top toast-end">
+    <div class="toast toast-bottom toast-end" hx-get="/{{LC}}/api/cleanup" hx-tigger="click, load delay:1s">
         <div role="alert" class="alert alert-{{status}}">
             <span>{{message}}</span>
         </div>
